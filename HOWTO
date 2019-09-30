@@ -1,0 +1,4 @@
+g++ -I /usr/include/eigen3 -o prog1 prog1.cpp
+
+
+# Issue though with making the output file executable when on RFS ...
