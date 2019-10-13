@@ -1,12 +1,6 @@
 #
-# Makefile that is generic enough to work for all targets
+# Makefile using pattern rules
 # 
-# Here we need to specify the TARGET as an argument when invoking make
-#
-# Examples: make TARGET=prog1
-#           make clean TARGET=prog2
-#           make TARGET=prog3
-#
 
 # Specify the compiler: g++ for C++
 CXX = g++
@@ -20,11 +14,11 @@ CXXFLAGS = -Wall
 # Include path for Eigen
 INC=-I/usr/include/eigen3
 
-all: $(TARGET)
-	@echo 'argument is '$(TARGET)
+programs = prog1 prog2 prog3 Example_SVD
+all: $(programs)
 
-$(TARGET): $(TARGET).cpp
-	$(CXX) $(CXXFLAGS) $(INC) -o $(TARGET) $(TARGET).cpp
+$(programs): %: %.cpp
+	$(CXX) $(CXXFLAGS) $(INC) -o $@ $<
 
 clean:
-	$(RM) $(TARGET)
+	$(RM) $(programs)
