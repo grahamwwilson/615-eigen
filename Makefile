@@ -19,7 +19,7 @@ CXXFLAGS = `root-config --cflags --glibs`
 # Include path for Eigen
 INC=-I/usr/include/eigen3
 
-programs = prog1 prog2 prog3 Example_SVD Example_LLSQ
+programs = prog1 prog2 prog3 Example_SVD Example_LLSQ Example_LLSQB
 all: $(programs)
 
 $(programs): %: %.cpp

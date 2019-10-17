@@ -55,9 +55,8 @@ MatrixXd A(NDATA,MPARS);
 for (int i=0; i<NDATA; i++){
     for (int j=0; j<MPARS; j++){
         if(j==0)A(i,j) = 1.0/dydata[i];
-        if(j==1)A(i,j) = xdata[i]/dydata[i];
-
-//ModelB  if(j==1)A(i,j) = xdata[i]*xdata[i]/dydata[i];
+//       if(j==1)A(i,j) = xdata[i]/dydata[i];
+        if(j==1)A(i,j) = xdata[i]*xdata[i]/dydata[i];
 //        if(j==1)A(i,j) = 0.0;
     }
 }
@@ -104,7 +103,8 @@ VectorXd fval(NDATA);
 VectorXd chi(NDATA);
 double chisq = 0.0;
 for (int i=0; i<NDATA; i++){
-    fval(i) = a(0) + a(1)*xdata[i];
+//    fval(i) = a(0) + a(1)*xdata[i];
+    fval(i) = a(0) + a(1)*xdata[i]*xdata[i];
     chi(i)  = (ydata[i]-fval[i])/dydata[i];
     std::cout << " i " << i << " x(i) " << xdata[i] << " yi " 
               << std::setw(4) << ydata[i] << " +- " 
