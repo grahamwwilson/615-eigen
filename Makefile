@@ -14,16 +14,16 @@ CXX = g++
 # -Wall     turns on most, but not all warnings
 # -O1       Optimization level 1
 # -fopenmp  Compile with OpenMP for shared memory parallel  
-CXXFLAGS = -Wall
+CXXFLAGS = `root-config --cflags --glibs`
 
 # Include path for Eigen
 INC=-I/usr/include/eigen3
 
-programs = prog1 prog2 prog3 Example_SVD
+programs = prog1 prog2 prog3 Example_SVD Example_LLSQ
 all: $(programs)
 
 $(programs): %: %.cpp
-	$(CXX) $(CXXFLAGS) $(INC) -o $@ $<
+	$(CXX) $(INC) -o $@ $< $(CXXFLAGS)
 
 clean:
 	$(RM) $(programs)
